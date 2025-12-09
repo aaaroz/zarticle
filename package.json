@@ -6,9 +6,37 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mts,js,jsx,mjs,json,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mts,js,jsx,mjs,json,md}\""
   },
   "dependencies": {
-    "astro": "^5.16.4"
+    "@astrojs/react": "^4.4.2",
+    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/ts-plugin": "^1.10.6",
+    "@fontsource/playfair-display": "^5.2.8",
+    "@fontsource/source-sans-pro": "^5.2.5",
+    "@tailwindcss/vite": "^4.1.17",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.16.4",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss": "^4.1.17"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.0",
+    "@types/eslint-plugin-jsx-a11y": "^6.10.1",
+    "@typescript-eslint/eslint-plugin": "^8.49.0",
+    "@typescript-eslint/parser": "^8.49.0",
+    "eslint": "^9.39.1",
+    "eslint-plugin-astro": "^1.5.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "prettier": "3.7.4",
+    "prettier-plugin-astro": "0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "typescript": "^5.9.3"
   }
 }

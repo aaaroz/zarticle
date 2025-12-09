@@ -1,0 +1,42 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ArticlePage from "@/components/pages/article";
+import { articles, getArticleBySlug } from "@/data/articles";
+
+export async function getStaticPaths() {
+  return articles.map((article) => ({
+    params: { slug: article.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const article = slug ? getArticleBySlug(slug) : null;
+
+if (!article) {
+  throw Astro.redirect("/404");
+}
+
+const formattedDate = new Date(article.publishedAt).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+// related articles
+const relatedArticles = articles
+  .filter((a) => a.category === article.category && a.id !== article.id)
+  .slice(0, 2);
+---
+
+<Layout
+  title={article.seo.metaTitle}
+  description={article.seo.metaDescription}
+  image={article.coverImage}
+>
+  <ArticlePage
+    client:load
+    article={article}
+    relatedArticles={relatedArticles}
+    formattedDate={formattedDate}
+  />
+</Layout>

@@ -1,0 +1,204 @@
+@import "tailwindcss";
+
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/600.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/source-sans-pro/400.css";
+@import "@fontsource/source-sans-pro/600.css";
+
+/* --------------------------------------------- */
+/*                 THEME TOKENS                  */
+/* --------------------------------------------- */
+@theme {
+  --color-background: hsl(40 33% 98%);
+  --color-foreground: hsl(220 20% 12%);
+
+  --color-card: hsl(40 33% 96%);
+  --color-card-foreground: hsl(220 20% 12%);
+
+  --color-popover: hsl(40 33% 98%);
+  --color-popover-foreground: hsl(220 20% 12%);
+
+  --color-primary: hsl(12 76% 61%);
+  --color-primary-foreground: hsl(40 33% 98%);
+
+  --color-secondary: hsl(40 20% 92%);
+  --color-secondary-foreground: hsl(220 20% 20%);
+
+  --color-muted: hsl(40 15% 90%);
+  --color-muted-foreground: hsl(220 10% 45%);
+
+  --color-accent: hsl(12 76% 61%);
+  --color-accent-foreground: hsl(40 33% 98%);
+
+  --color-destructive: hsl(0 84.2% 60.2%);
+  --color-destructive-foreground: hsl(210 40% 98%);
+
+  --color-border: hsl(40 20% 88%);
+  --color-input: hsl(40 20% 88%);
+  --color-ring: hsl(12 76% 61%);
+
+  --radius: 0.5rem;
+
+  /* Custom tokens */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Source Sans Pro", system-ui, sans-serif;
+
+  --gradient-hero: linear-gradient(
+    135deg,
+    hsl(12 76% 61% / 0.1) 0%,
+    hsl(40 33% 98%) 100%
+  );
+
+  --shadow-card: 0 4px 20px -4px hsl(220 20% 12% / 0.08);
+  --shadow-card-hover: 0 12px 40px -8px hsl(220 20% 12% / 0.15);
+}
+
+.dark {
+  --color-background: hsl(220 20% 8%);
+  --color-foreground: hsl(40 20% 95%);
+
+  --color-card: hsl(220 20% 12%);
+  --color-card-foreground: hsl(40 20% 95%);
+
+  --color-popover: hsl(220 20% 10%);
+  --color-popover-foreground: hsl(40 20% 95%);
+
+  --color-primary: hsl(12 76% 61%);
+  --color-primary-foreground: hsl(220 20% 8%);
+
+  --color-secondary: hsl(220 15% 18%);
+  --color-secondary-foreground: hsl(40 20% 90%);
+
+  --color-muted: hsl(220 15% 20%);
+  --color-muted-foreground: hsl(40 10% 60%);
+
+  --color-accent: hsl(12 76% 61%);
+  --color-accent-foreground: hsl(220 20% 8%);
+
+  --color-destructive: hsl(0 62.8% 50%);
+  --color-destructive-foreground: hsl(40 20% 95%);
+
+  --color-border: hsl(220 15% 20%);
+  --color-input: hsl(220 15% 20%);
+  --color-ring: hsl(12 76% 61%);
+
+  --gradient-hero: linear-gradient(
+    135deg,
+    hsl(12 76% 61% / 0.1) 0%,
+    hsl(220 20% 8%) 100%
+  );
+
+  --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.3);
+  --shadow-card-hover: 0 12px 40px -8px hsl(0 0% 0% / 0.5);
+}
+
+/* --------------------------------------------- */
+/*                  GLOBAL BASE                  */
+/* --------------------------------------------- */
+
+* {
+  border-color: theme(--color-border);
+}
+
+body {
+  background-color: theme(--color-background);
+  color: theme(--color-foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+}
+
+/* --------------------------------------------- */
+/*            ARTICLE RICH TEXT STYLES           */
+/* --------------------------------------------- */
+
+.article-content p {
+  margin-bottom: 1.5rem;
+  color: color-mix(in srgb, theme(--color-foreground) 90%, transparent);
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.article-content h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.article-content h3 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.375rem;
+  font-weight: 600;
+}
+
+.article-content blockquote {
+  border-left: 4px solid theme(--color-primary);
+  color: theme(--color-muted-foreground);
+  margin: 2rem 0;
+  padding-left: 1.5rem;
+  font-style: italic;
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.article-content li {
+  font-size: 1.125rem;
+  color: color-mix(in srgb, theme(--color-foreground) 90%, transparent);
+}
+
+.article-content a {
+  color: theme(--color-primary);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------- */
+/*                  UTILITIES                    */
+/* --------------------------------------------- */
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

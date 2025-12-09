@@ -1,0 +1,42 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import CategoryView from "@/components/pages/category";
+import { articles } from "@/data/articles";
+
+
+export async function getStaticPaths() {
+  const categories = ["Lifestyle", "Travel", "Food", "Technology"];
+
+  return categories.map((cat) => ({
+    params: { slug: cat.toLowerCase() },
+  }));
+}
+
+const { slug } = Astro.params;
+
+const categories = ["Lifestyle", "Travel", "Food", "Technology"];
+const categoryName = slug
+  ? slug.charAt(0).toUpperCase() + slug.slice(1).toLowerCase()
+  : "";
+
+const isValidCategory = categories.includes(categoryName);
+
+if (!isValidCategory) {
+  throw Astro.redirect("/404");
+}
+
+const categoryArticles = articles.filter(
+  (article) => article.category.toLowerCase() === slug?.toLowerCase()
+);
+---
+
+<Layout title={`${categoryName} Articles | Inkwell`}
+        description={`Explore our ${categoryName.toLowerCase()} articles.`}>
+
+  <CategoryView 
+    categoryName={categoryName}
+    categories={categories}
+    articles={categoryArticles}
+  />
+
+</Layout>

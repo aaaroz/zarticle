@@ -1,22 +1,68 @@
+---
+import "@/styles/global.css";
+
+import Footer from "@/components/layouts/footer"
+import Header from "@/components/layouts/header"
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  robots?: string;
+}
+
+const {
+  title = "Default Site Title",
+  description = "Default site description.",
+  image = "/default-og.png",
+  robots = "index, follow",
+} = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Dynamic SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content={robots} />
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+  </head>
+
+  <body>
+    <div className="flex min-h-screen flex-col">
+      <Header />
+      <main className="flex-1">
+    <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>
+
