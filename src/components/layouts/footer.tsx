@@ -6,7 +6,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-2">
             <a href="/" className="mb-4 inline-block">
               <h2 className="font-display text-foreground text-2xl font-semibold">
-                <span className="text-primary">Ink</span>well
+                <span className="text-primary">z</span>Article
               </h2>
             </a>
             <p className="font-body text-muted-foreground max-w-sm">
@@ -53,7 +53,7 @@ const Footer = () => {
         </div>
         <div className="border-border mt-12 border-t pt-8 text-center">
           <p className="font-body text-muted-foreground text-sm">
-            © {new Date().getFullYear()} Inkwell. All rights reserved.
+            © {new Date().getFullYear()} zArticle. All rights reserved.
           </p>
         </div>
       </div>
