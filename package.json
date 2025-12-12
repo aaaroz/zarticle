@@ -14,6 +14,7 @@
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.6.0",
     "@astrojs/ts-plugin": "^1.10.6",
+    "@contentful/rich-text-html-renderer": "^17.1.6",
     "@fontsource/playfair-display": "^5.2.8",
     "@fontsource/source-sans-pro": "^5.2.5",
     "@tailwindcss/vite": "^4.1.17",
@@ -22,6 +23,7 @@
     "astro": "^5.16.4",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
+    "react-markdown": "^10.1.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17"
   },

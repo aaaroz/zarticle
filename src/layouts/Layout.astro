@@ -1,14 +1,14 @@
 ---
-import "@/styles/global.css";
+import "@/styles/global.css"
 
 import Footer from "@/components/layouts/footer"
 import Header from "@/components/layouts/header"
 
 interface Props {
-  title?: string;
-  description?: string;
-  image?: string;
-  robots?: string;
+  title?: string
+  description?: string
+  image?: string
+  robots?: string
 }
 
 const {
@@ -16,7 +16,7 @@ const {
   description = "Default site description.",
   image = "/default-og.png",
   robots = "index, follow",
-} = Astro.props;
+} = Astro.props
 ---
 
 <!doctype html>
@@ -47,10 +47,10 @@ const {
   </head>
 
   <body>
-    <div className="flex min-h-screen flex-col">
+    <div class="flex min-h-screen flex-col">
       <Header />
-      <main className="flex-1">
-    <slot />
+      <main class="flex-1">
+        <slot />
       </main>
       <Footer />
     </div>
@@ -65,4 +65,3 @@ const {
     height: 100%;
   }
 </style>
-

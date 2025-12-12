@@ -1,34 +1,38 @@
-import ArticleCard from "../ui/article-card";
+import type { Article, Category } from "@/lib/strapi/types"
+import ArticleCard from "../ui/article-card"
 
-const descriptions = {
-  Lifestyle: "Essays on intentional living, balance, and meaningful habits.",
-  Travel: "Stories and reflections from journeys across the globe.",
-  Food: "Exploring flavors, traditions, and culinary creativity.",
-  Technology: "Perspectives on digital tools, innovation, and the future.",
-};
-
-export default function CategoryView({ categoryName, categories, articles }) {
+export default function CategoryView({
+  categoryName,
+  categories,
+  articles,
+}: {
+  categoryName: string
+  categories: Category[]
+  articles: Article[]
+}) {
   return (
     <div className="animate-fade-in">
       {/* Category Header */}
-      <section className="bg-card border-b border-border">
+      <section className="bg-card border-border border-b">
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl">
-            <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-              <a href="/" className="hover:text-primary">Home</a>
+            <nav className="text-muted-foreground mb-4 flex items-center gap-2 text-sm">
+              <a href="/" className="hover:text-primary">
+                Home
+              </a>
               <span>/</span>
               <span>Categories</span>
               <span>/</span>
               <span className="text-primary">{categoryName}</span>
             </nav>
 
-            <h1 className="text-4xl md:text-5xl font-semibold mb-4">
+            <h1 className="mb-4 text-4xl font-semibold capitalize md:text-5xl">
               {categoryName}
             </h1>
 
-            <p className="text-lg text-muted-foreground">
-              {descriptions[categoryName]}
-            </p>
+            {/* <p className="text-lg text-muted-foreground"> */}
+            {/*   {descriptions[categoryName]} */}
+            {/* </p> */}
           </div>
         </div>
       </section>
@@ -38,15 +42,15 @@ export default function CategoryView({ categoryName, categories, articles }) {
         <div className="flex flex-wrap gap-3">
           {categories.map((cat) => (
             <a
-              key={cat}
-              href={`/category/${cat.toLowerCase()}`}
-              className={`px-4 py-2 rounded-full text-sm transition-all ${
-                cat === categoryName
+              key={cat.slug}
+              href={`/category/${cat.slug}`}
+              className={`rounded-full px-4 py-2 text-sm capitalize transition-all ${
+                cat.name === categoryName
                   ? "bg-primary text-primary-foreground"
                   : "bg-secondary text-secondary-foreground hover:bg-primary/10"
               }`}
             >
-              {cat}
+              {cat.name}
             </a>
           ))}
         </div>
@@ -54,15 +58,15 @@ export default function CategoryView({ categoryName, categories, articles }) {
 
       {/* Articles */}
       <section className="container mx-auto px-4 pb-16">
-        <p className="text-sm text-muted-foreground mb-8">
+        <p className="text-muted-foreground mb-8 text-sm">
           {articles.length} {articles.length === 1 ? "article" : "articles"}
         </p>
 
         {articles.length > 0 ? (
-          <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {articles.map((article, i) => (
               <div
-                key={article.id}
+                key={article.documentId}
                 className="animate-fade-in"
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
@@ -71,11 +75,11 @@ export default function CategoryView({ categoryName, categories, articles }) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-16 text-muted-foreground">
+          <div className="text-muted-foreground py-16 text-center">
             No articles in this category yet.
           </div>
         )}
       </section>
     </div>
-  );
+  )
 }

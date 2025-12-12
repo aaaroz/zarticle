@@ -1,42 +1,39 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import CategoryView from "@/components/pages/category";
-import { articles } from "@/data/articles";
+import CategoryView from "@/components/pages/category"
+import { articles, categories } from "@/data/articles"
+import Layout from "@/layouts/Layout.astro"
 
+// import { getArticleByCategory } from "@/lib/strapi/articles-by-category"
+// import { getCategories } from "@/lib/strapi/categories"
+
+const { slug } = Astro.params
+// const categories = await getCategories()
+// const articles = await getArticleByCategory(slug)
 
 export async function getStaticPaths() {
-  const categories = ["Lifestyle", "Travel", "Food", "Technology"];
-
   return categories.map((cat) => ({
-    params: { slug: cat.toLowerCase() },
-  }));
+    params: { slug: cat.slug },
+  }))
 }
 
-const { slug } = Astro.params;
+const category = categories.find((cat) => cat.slug === slug)
 
-const categories = ["Lifestyle", "Travel", "Food", "Technology"];
-const categoryName = slug
-  ? slug.charAt(0).toUpperCase() + slug.slice(1).toLowerCase()
-  : "";
-
-const isValidCategory = categories.includes(categoryName);
-
-if (!isValidCategory) {
-  throw Astro.redirect("/404");
+if (!category) {
+  throw Astro.redirect("/404")
 }
 
 const categoryArticles = articles.filter(
-  (article) => article.category.toLowerCase() === slug?.toLowerCase()
-);
+  (article) => article.category.slug === slug,
+)
 ---
 
-<Layout title={`${categoryName} Articles | Inkwell`}
-        description={`Explore our ${categoryName.toLowerCase()} articles.`}>
-
-  <CategoryView 
-    categoryName={categoryName}
+<Layout
+  title={`${category.name.charAt(0).toUpperCase() + category.name.slice(1)} Articles | zArticle`}
+  description={`Explore our ${category.name} articles.`}
+>
+  <CategoryView
+    categoryName={category.name}
     categories={categories}
     articles={categoryArticles}
   />
-
 </Layout>

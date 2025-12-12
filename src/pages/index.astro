@@ -1,14 +1,16 @@
 ---
-import HomePage from "@/components/pages/home";
-import Layout from "@/layouts/Layout.astro";
+import HomePage from "@/components/pages/home"
+// import { getArticles } from "@/lib/strapi/articles"
+import { articles } from "@/data/articles"
+import Layout from "@/layouts/Layout.astro"
+
+//const apiArticles = await getArticles()
 ---
 
-<Layout 
-  title="zArticle | Thoughtful Essays on Living Well" 
+<Layout
+  title="zArticle | Thoughtful Essays on Living Well"
   description="Discover thoughtful essays and stories on slow living, travel, food, and technology."
   image="/og/home.png"
-  >
-  <HomePage client:load />
+>
+  <HomePage articles={articles} client:load />
 </Layout>
-
-
